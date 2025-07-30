@@ -1,20 +1,8 @@
 ---
 deployment:
   tasks:
-    # Clear the public_html directory (except hidden files)
-    - export DEPLOYPATH=/home/nvjadcaq/public_html
-    - find $DEPLOYPATH -maxdepth 1 -type f ! -name '.htaccess' ! -name '.well-known' -delete
-    - find $DEPLOYPATH -maxdepth 1 -type d ! -path $DEPLOYPATH ! -name '.well-known' -exec rm -rf {} + 2>/dev/null || true
-    
-    # Copy all files from repository to public_html
-    - cp -R /home/nvjadcaq/repo/trev/* $DEPLOYPATH/
-    
-    # Set proper file permissions
-    - find $DEPLOYPATH -type f -exec chmod 644 {} \;
-    - find $DEPLOYPATH -type d -exec chmod 755 {} \;
-    
-    # Ensure index.html exists and is readable
-    - chmod 644 $DEPLOYPATH/index.html
-    
-    # Log deployment completion
-    - echo "✅ Trev Solutions deployed successfully to trevsol.com at $(date)"
+    - /bin/rm -rf /home1/nvjadcaq/public_html/*
+    - /bin/cp -R * /home1/nvjadcaq/public_html/
+    - /bin/chmod -R 644 /home1/nvjadcaq/public_html/*
+    - /bin/chmod -R 755 /home1/nvjadcaq/public_html/
+    - /bin/find /home1/nvjadcaq/public_html -name "*.html" -exec chmod 644 {} \;
