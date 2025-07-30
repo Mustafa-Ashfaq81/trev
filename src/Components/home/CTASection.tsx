@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function CTASection() {
@@ -31,6 +31,8 @@ export default function CTASection() {
             <Button 
               size="lg" 
               className="gradient-bg transition-all duration-300 text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+              aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
             >
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />

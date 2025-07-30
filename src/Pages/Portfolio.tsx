@@ -1,16 +1,16 @@
 
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowRight, TrendingUp, Users, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { setPageMeta } from "@/utils/seo";
+import { ExternalLink, ArrowRight, TrendingUp } from "lucide-react";
+import { Button } from "../Components/ui/button";
+import { Badge } from "../Components/ui/badge";
+import { setPageMeta } from "../utils/seo";
 
-// Project image assets - replace these with your actual project images
+// Project image assets - now using your local images
 const projectImages = {
-  nexora: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNFOEZGIi8+CjxyZWN0IHg9IjIwMCIgeT0iMTUwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzgwM0VFRiIgcng9IjIwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzIwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TmV4b3JhIFNvbHV0aW9uczwvdGV4dD4KPHRleHQgeD0iNDAwIiB5PSIzNTAiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlRlY2ggLyBTYWFTPC90ZXh0Pgo8L3N2Zz4K",
-  bloomcart: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRkVGOUU3Ii8+CjxyZWN0IHg9IjIwMCIgeT0iMTUwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0Y3RDA0NyIgcng9IjIwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzIwIiBmaWxsPSIjMTExODI3IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CbG9vbSBDYXJ0PC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjM1MCIgZmlsbD0iIzExMTgyNyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GYXNoaW9uIC8gUmV0YWlsPC90ZXh0Pgo8L3N2Zz4K",
-  elevatehr: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjlGQUZCIi8+CjxyZWN0IHg9IjIwMCIgeT0iMTUwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzM3NDE1MSIgcng9IjIwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzIwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWxldmF0ZUhSPC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjM1MCIgZmlsbD0id2hpdGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SFIgQ29uc3VsdGluZyAvIFNlcnZpY2VzPC90ZXh0Pgo8L3N2Zz4K"
+  nexora: "/images/projects/nexora-project.jpeg",
+  bloomcart: "/images/projects/bloomcart-project.jpeg",
+  elevatehr: "/images/projects/elevatehr-project.jpeg"
 };
 
 const projects = [
@@ -185,9 +185,10 @@ export default function Portfolio() {
                         className="w-full h-96 object-cover rounded-2xl"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
-                        onError={(e) => {
+                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                           // Fallback to a branded placeholder if image fails to load
-                          e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNFOEZGIi8+CjxyZWN0IHg9IjI1MCIgeT0iMjAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzgwM0VFRiIgcng9IjEwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzEwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VHJldiBQcm9qZWN0PC90ZXh0Pgo8L3N2Zz4K";
+                          const target = e.target as HTMLImageElement;
+                          target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNFOEZGIi8+CjxyZWN0IHg9IjI1MCIgeT0iMjAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzgwM0VFRiIgcng9IjEwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzEwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VHJldiBQcm9qZWN0PC90ZXh0Pgo8L3N2Zz4K";
                         }}
                       />
                     </div>
@@ -292,7 +293,12 @@ export default function Portfolio() {
             <p className="text-xl text-gray-600 mb-8">
               Let's build something powerful together.
             </p>
-            <Button size="lg" className="gradient-bg transition-opacity text-lg px-8 py-4">
+            <Button 
+              size="lg" 
+              className="gradient-bg transition-opacity text-lg px-8 py-4"
+              onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+              aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+            >
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

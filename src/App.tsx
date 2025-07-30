@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './Layout';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './Components/ErrorBoundary';
 
 // Import all pages
 import Home from './Pages/Home';
@@ -34,7 +34,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Layout>
+        <Layout currentPageName="Home">
           <Routes>
             {/* Main routes */}
             <Route path="/" element={<Home />} />

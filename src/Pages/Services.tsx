@@ -1,13 +1,15 @@
 
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { setPageMeta } from "@/utils/seo";
+import { CheckCircle, ArrowRight } from "lucide-react";
+import { Button } from "../Components/ui/button";
+import { setPageMeta } from "../utils/seo";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+
 
 const services = [
   {
-    icon: Code,
     title: "Web Development",
     subtitle: "Built to perform. Engineered for results.",
     description: "Your website is your most powerful digital asset. We create responsive, lightning-fast, conversion-driven websites designed to engage your audience and turn visitors into loyal customers. Every line of code, every pixel, and every interaction is optimized for accuracy, speed, and seamless user experience—because your online presence deserves nothing less.",
@@ -21,7 +23,6 @@ const services = [
     ]
   },
   {
-    icon: Palette,
     title: "Branding & Design",
     subtitle: "Visual storytelling with purpose and precision.",
     description: "Your brand's identity is the foundation of trust and recognition. We craft distinctive, clean, and purposeful visual identities and digital assets that communicate your brand's story with clarity and confidence. From logos to social content, our designs don't just look good — they create an emotional connection and inspire action.",
@@ -35,7 +36,6 @@ const services = [
     ]
   },
   {
-    icon: TrendingUp,
     title: "End-to-End Marketing",
     subtitle: "Strategic execution that moves the needle.",
     description: "Marketing isn't guesswork—it's a science. We deliver full-spectrum digital marketing solutions, tailored exactly to your goals. From data-driven content strategies and targeted paid campaigns to precision funnel building and email marketing, we ensure every tactic aligns perfectly to maximize ROI and accelerate growth.",
@@ -92,7 +92,7 @@ export default function Services() {
               >
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
-                    <service.icon className="w-8 h-8 text-white" />
+                    <span className="text-white font-bold text-xl">0{index + 1}</span>
                   </div>
                   
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{service.title}</h2>
@@ -108,7 +108,11 @@ export default function Services() {
                     ))}
                   </div>
                   
-                  <Button className="gradient-bg transition-opacity">
+                  <Button 
+                    className="gradient-bg transition-opacity"
+                    onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+                    aria-label="Get started with Trev Solutions - Contact us on LinkedIn"
+                  >
                     Get Started
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -116,11 +120,42 @@ export default function Services() {
 
                 <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
                   <div className="relative">
-                    <div className="bg-gray-50 rounded-3xl p-8 h-96 flex items-center justify-center border border-gray-200">
-                      <div className="text-center">
-                        <service.icon className="w-24 h-24 text-gray-300 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-gray-700">{service.title}</h3>
-                      </div>
+                    <div className="bg-gray-50 rounded-3xl overflow-hidden h-96 border border-gray-200">
+                      {/* High-Quality DotLottie Animations for all services */}
+                      <motion.div
+                        className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <motion.div
+                          className="w-full h-full flex items-center justify-center"
+                          style={{ 
+                            maxWidth: '90%', 
+                            maxHeight: '90%'
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <DotLottieReact
+                            src={
+                              index === 0 
+                                ? "https://lottie.host/eade46ae-e460-4851-a675-6416e803289d/KhN10BKkjs.lottie" // Web Development
+                                : index === 1 
+                                ? "https://lottie.host/ba16705d-b39e-4df3-9579-dbba8f80054b/vXRqnKcTfJ.lottie" // Branding & Design
+                                : "https://lottie.host/77cb135a-9bb4-497b-a45b-19e9a14f73e1/FdSx8hMUik.lottie" // End-to-End Marketing
+                            }
+                            loop
+                            autoplay
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              maxWidth: '400px',
+                              maxHeight: '400px',
+                              filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))'
+                            }}
+                          />
+                        </motion.div>
+                      </motion.div>
                     </div>
                     
                     {/* Floating elements */}

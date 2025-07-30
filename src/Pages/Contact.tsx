@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "../Components/ui/button";
+import { Input } from "../Components/ui/input";
+import { Textarea } from "../Components/ui/textarea";
 import { Mail, MessageCircle, Calendar, Send, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
-import { setPageMeta } from "@/utils/seo";
+import { setPageMeta } from "../utils/seo";
+
+interface FormData {
+  name: string;
+  email: string;
+  business: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+type SubmitStatus = 'success' | 'error' | null;
 
 export default function Contact() {
   useEffect(() => {
     setPageMeta('contact');
   }, []);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     business: "",
@@ -19,11 +34,11 @@ export default function Contact() {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
-  const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
     
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
@@ -43,7 +58,7 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!validateForm()) {
@@ -73,7 +88,7 @@ export default function Contact() {
   };
 
   // Simulate form submission - replace with actual API call
-  const submitForm = async (data) => {
+  const submitForm = async (data: FormData): Promise<{ success: boolean }> => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
@@ -90,7 +105,7 @@ export default function Contact() {
     return { success: true };
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -98,7 +113,7 @@ export default function Contact() {
     }));
     
     // Clear error for this field when user starts typing
-    if (errors[name]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
         [name]: ""
@@ -159,8 +174,24 @@ export default function Contact() {
               <h3 className="text-xl font-bold mb-2">Social Media</h3>
               <p className="text-gray-600 mb-4">Slide into our DMs — we respond fast</p>
               <div className="space-y-2">
-                <div className="text-purple-600 font-medium">{process.env.REACT_APP_INSTAGRAM_HANDLE || '@trevsol_'}</div>
-                <div className="text-purple-600 font-medium">{process.env.REACT_APP_LINKEDIN_COMPANY || 'Trev Solutions'}</div>
+                <a 
+                  href="https://www.instagram.com/trevsol_/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 block"
+                  aria-label="Follow Trev Solutions on Instagram"
+                >
+                  {process.env.REACT_APP_INSTAGRAM_HANDLE || '@trevsol_'}
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/trev-solution/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 block"
+                  aria-label="Connect with Trev Solutions on LinkedIn"
+                >
+                  {process.env.REACT_APP_LINKEDIN_COMPANY || 'Trev Solutions'}
+                </a>
               </div>
             </motion.div>
 
@@ -339,7 +370,12 @@ export default function Contact() {
                 <p className="text-gray-600 mb-4">
                   Slide into our DMs on Instagram or LinkedIn — we respond fast.
                 </p>
-                <Button variant="outline" className="w-full border-purple-200 text-purple-600 hover:bg-purple-50">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-purple-200 text-purple-600 hover:bg-purple-50"
+                  onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+                  aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+                >
                   🚀 Start Your Project
                 </Button>
               </div>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { setPageMeta } from "@/utils/seo";
+import { Button } from "../Components/ui/button";
+import { setPageMeta } from "../utils/seo";
 
 const faqs = [
   {
@@ -44,9 +44,9 @@ export default function FAQ() {
     setPageMeta('faq');
   }, []);
 
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
@@ -153,7 +153,8 @@ export default function FAQ() {
                 <span className="hidden sm:block text-gray-400" aria-hidden="true">|</span>
                 <Button 
                   className="gradient-bg hover:opacity-90 transition-opacity"
-                  aria-label="Start your project with Trev Solutions"
+                  onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+                  aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
                 >
                   <span aria-hidden="true">🚀</span> Start Your Project
                   <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />

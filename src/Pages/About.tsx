@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Target, Zap, Users, TrendingUp, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { setPageMeta } from "@/utils/seo";
+import { Zap, TrendingUp, Sparkles } from "lucide-react";
+import { Button } from "../Components/ui/button";
+import { setPageMeta } from "../utils/seo";
 
 const values = [
   {
@@ -215,7 +215,12 @@ export default function About() {
             <p className="text-xl text-gray-600 mb-8">
               Let's build something remarkable together.
             </p>
-            <Button size="lg" className="gradient-bg hover:opacity-90 transition-opacity text-lg px-8 py-4">
+            <Button 
+              size="lg" 
+              className="gradient-bg hover:opacity-90 transition-opacity text-lg px-8 py-4"
+              onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+              aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+            >
               Start Your Project
             </Button>
           </motion.div>

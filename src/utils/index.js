@@ -26,7 +26,9 @@ export const config = {
   siteUrl: process.env.REACT_APP_SITE_URL || 'https://trevsol.com',
   socialMedia: {
     instagram: process.env.REACT_APP_INSTAGRAM_HANDLE || '@trevsol_',
+    instagramUrl: process.env.REACT_APP_INSTAGRAM_URL || 'https://www.instagram.com/trevsol_/',
     linkedin: process.env.REACT_APP_LINKEDIN_COMPANY || 'Trev Solutions',
+    linkedinUrl: process.env.REACT_APP_LINKEDIN_URL || 'https://www.linkedin.com/company/trev-solution/',
     twitter: process.env.REACT_APP_TWITTER_HANDLE || '@trevsol_'
   },
   services: {

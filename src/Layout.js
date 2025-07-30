@@ -1,14 +1,14 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { createPageUrl } from "@/utils";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { createPageUrl } from "./utils";
+import { Menu, ArrowRight } from "lucide-react";
+import { Button } from "./Components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "./Components/ui/sheet";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -94,6 +94,7 @@ export default function Layout({ children, currentPageName }) {
               ))}
               <Button 
                 className="gradient-bg transition-opacity"
+                onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
                 aria-label="Start your project with Trev Solutions"
               >
                 Start Your Project
@@ -133,6 +134,7 @@ export default function Layout({ children, currentPageName }) {
                     ))}
                     <Button 
                       className="gradient-bg transition-opacity w-full"
+                      onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
                       aria-label="Start your project with Trev Solutions"
                     >
                       Start Your Project
@@ -178,9 +180,9 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h4 className="font-semibold text-white mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Web Development</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Branding & Design</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Marketing</a></li>
+                              <li><Link to="/services" className="hover:text-white transition-colors">Web Development</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Branding & Design</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Marketing</Link></li>
               </ul>
             </div>
             
