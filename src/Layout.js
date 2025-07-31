@@ -149,7 +149,7 @@ export default function Layout({ children, currentPageName }) {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main className="pt-[72px] md:pt-20">
         {children}
       </main>
 
