@@ -24,7 +24,7 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white text-gray-800 pt-16 sm:pt-20">
       <style>{`
         :root {
           --primary-purple: #803eef;
@@ -61,12 +61,12 @@ export default function Layout({ children, currentPageName }) {
       `}</style>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200" role="navigation" aria-label="Main navigation">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <Link 
-              to={createPageUrl("Home")} 
+      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm" role="navigation" aria-label="Main navigation">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex justify-between items-center w-full">
+            {/* Left: Logo */}
+            <Link
+              to={createPageUrl("Home")}
               className="flex items-center space-x-2"
               aria-label="Trev Solutions - Return to homepage"
             >
@@ -75,6 +75,57 @@ export default function Layout({ children, currentPageName }) {
               </div>
               <span className="text-xl font-bold text-[var(--text-dark)]">Trev</span>
             </Link>
+
+            {/* Right: Hamburger menu for mobile */}
+            <div className="md:hidden">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="hover:bg-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)]"
+                    aria-label="Open navigation menu"
+                    aria-expanded={isOpen}
+                  >
+                    <Menu className="h-6 w-6 text-gray-700 transition-transform duration-300" />
+                  </Button>
+                </SheetTrigger>
+
+                <SheetContent
+                  side="left"
+                  className="w-screen h-screen bg-white flex flex-col items-start p-6 transition-transform duration-300 ease-in-out transform translate-x-0"
+                  role="dialog"
+                  aria-label="Mobile navigation menu"
+                >
+                  <div className="flex flex-col space-y-6 mt-8 w-full">
+                    {navigationItems.map((item, index) => (
+                      <Link
+                        key={item.name}
+                        id={index === 0 ? 'first-link' : undefined}
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`text-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:ring-offset-2 rounded-md px-2 py-1 w-full ${
+                          location.pathname === item.path
+                            ? "gradient-text"
+                            : "text-gray-600 hover:text-[var(--text-dark)]"
+                        }`}
+                        aria-current={location.pathname === item.path ? "page" : undefined}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                    <Button
+                      className="gradient-bg transition-opacity w-full"
+                      onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+                      aria-label="Start your project with Trev Solutions"
+                    >
+                      Start Your Project
+                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </Button>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
@@ -92,7 +143,7 @@ export default function Layout({ children, currentPageName }) {
                   {item.name}
                 </Link>
               ))}
-              <Button 
+              <Button
                 className="gradient-bg transition-opacity"
                 onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
                 aria-label="Start your project with Trev Solutions"
@@ -101,55 +152,12 @@ export default function Layout({ children, currentPageName }) {
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
-
-            {/* Mobile Navigation */}
-            <div className="md:hidden">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    aria-label="Open navigation menu"
-                    aria-expanded={isOpen}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-80" role="dialog" aria-label="Mobile navigation menu">
-                  <div className="flex flex-col space-y-6 mt-8">
-                    {navigationItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`text-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:ring-offset-2 rounded-md px-2 py-1 ${
-                          location.pathname === item.path
-                            ? "gradient-text"
-                            : "text-gray-600 hover:text-[var(--text-dark)]"
-                        }`}
-                        aria-current={location.pathname === item.path ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                    <Button 
-                      className="gradient-bg transition-opacity w-full"
-                      onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-                      aria-label="Start your project with Trev Solutions"
-                    >
-                      Start Your Project
-                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main className={`md:pt-20 ${isOpen ? 'hidden' : 'pt-[72px]'}`}>
         {children}
       </main>
 
