@@ -1,8 +1,10 @@
 ---
 deployment:
   tasks:
-    - /bin/rm -rf /home1/nvjadcaq/public_html/*
-    - /bin/cp -R * /home1/nvjadcaq/public_html/
-    - /bin/chmod -R 644 /home1/nvjadcaq/public_html/*
-    - /bin/chmod -R 755 /home1/nvjadcaq/public_html/
-    - /bin/find /home1/nvjadcaq/public_html -name "*.html" -exec chmod 644 {} \;
+    - export DEPLOYPATH=/home1/nvjadcaq/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp -R static $DEPLOYPATH
+    - /bin/cp -R images $DEPLOYPATH
+    - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp manifest.json $DEPLOYPATH
+    - /bin/cp robots.txt $DEPLOYPATH
