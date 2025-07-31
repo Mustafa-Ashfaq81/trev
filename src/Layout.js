@@ -101,49 +101,48 @@ export default function Layout({ children, currentPageName }) {
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
-
-            {/* Mobile Navigation */}
-            <div className="md:hidden">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    aria-label="Open navigation menu"
-                    aria-expanded={isOpen}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-80" role="dialog" aria-label="Mobile navigation menu">
-                  <div className="flex flex-col space-y-6 mt-8">
-                    {navigationItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`text-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:ring-offset-2 rounded-md px-2 py-1 ${
-                          location.pathname === item.path
-                            ? "gradient-text"
-                            : "text-gray-600 hover:text-[var(--text-dark)]"
-                        }`}
-                        aria-current={location.pathname === item.path ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                    <Button 
-                      className="gradient-bg transition-opacity w-full"
-                      onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-                      aria-label="Start your project with Trev Solutions"
+          </div>
+          {/* Mobile Navigation - moved outside flex */}
+          <div className="md:hidden mt-4">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  aria-label="Open navigation menu"
+                  aria-expanded={isOpen}
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80" role="dialog" aria-label="Mobile navigation menu">
+                <div className="flex flex-col space-y-6 mt-8">
+                  {navigationItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:ring-offset-2 rounded-md px-2 py-1 ${
+                        location.pathname === item.path
+                          ? "gradient-text"
+                          : "text-gray-600 hover:text-[var(--text-dark)]"
+                      }`}
+                      aria-current={location.pathname === item.path ? "page" : undefined}
                     >
-                      Start Your Project
-                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
+                      {item.name}
+                    </Link>
+                  ))}
+                  <Button 
+                    className="gradient-bg transition-opacity w-full"
+                    onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
+                    aria-label="Start your project with Trev Solutions"
+                  >
+                    Start Your Project
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
