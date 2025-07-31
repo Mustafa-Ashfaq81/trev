@@ -55,14 +55,20 @@ export const SheetContent: React.FC<SheetContentProps> = ({
   useEffect(() => {
     if (context.open) {
       document.body.style.overflow = 'hidden';
+  
+      // Focus on the first nav link if present
+      setTimeout(() => {
+        const firstLink = document.getElementById('first-link');
+        if (firstLink) firstLink.focus();
+      }, 100); // Small delay to ensure it's rendered
     } else {
       document.body.style.overflow = 'unset';
     }
-    
+  
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [context.open]);
+  }, [context.open]);  
   
   if (!context.open) return null;
   
@@ -77,13 +83,13 @@ export const SheetContent: React.FC<SheetContentProps> = ({
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/50 z-50"
+        className="fixed inset-0 bg-black/80 z-[60]"
         onClick={() => context.onOpenChange(false)}
       />
       
       {/* Sheet */}
-      <div className={`fixed ${sideClasses[side]} bg-white shadow-lg z-50 ${className}`}>
-        <div className="p-6">
+      <div className={`fixed ${sideClasses[side]} bg-white shadow-xl z-[70] w-screen ${className}`}>
+        <div className="p-6 h-full overflow-y-auto">
           <button
             onClick={() => context.onOpenChange(false)}
             className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
