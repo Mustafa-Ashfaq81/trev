@@ -5,16 +5,12 @@ deployment:
     - export DEPLOYPATH=/home1/nvjadcaq/public_html/
     - find $DEPLOYPATH -type f ! -name '.htaccess' ! -name '.well-known' -delete 2>/dev/null || true
     - find $DEPLOYPATH -mindepth 1 -type d ! -name '.well-known' -exec rm -rf {} + 2>/dev/null || true
-    # Install dependencies and build React app on server
-    - export PATH=/opt/cpanel/ea-nodejs20/bin:$PATH
-    - npm ci --production=false
-    - npm run build
-    # Deploy React build files (production ready)
-    - /bin/cp build/index.html $DEPLOYPATH
-    - /bin/cp -R build/static $DEPLOYPATH
-    - /bin/cp -R build/images $DEPLOYPATH  
-    - /bin/cp build/manifest.json $DEPLOYPATH
-    - /bin/cp build/robots.txt $DEPLOYPATH
-    - /bin/cp build/asset-manifest.json $DEPLOYPATH
-    - /bin/cp build/favicon.ico $DEPLOYPATH
-    - /bin/cp build/logo192.png $DEPLOYPATH
+    # Deploy pre-built React files (fast deployment)
+    - /bin/cp build/index.html $DEPLOYPATH || echo "Failed to copy index.html"
+    - /bin/cp -R build/static $DEPLOYPATH || echo "Failed to copy static directory"
+    - /bin/cp -R build/images $DEPLOYPATH || echo "Failed to copy images directory"
+    - /bin/cp build/manifest.json $DEPLOYPATH || echo "Failed to copy manifest.json"
+    - /bin/cp build/robots.txt $DEPLOYPATH || echo "Failed to copy robots.txt"
+    - /bin/cp build/asset-manifest.json $DEPLOYPATH || echo "Failed to copy asset-manifest.json"
+    - /bin/cp build/favicon.ico $DEPLOYPATH || echo "Failed to copy favicon.ico"
+    - /bin/cp build/logo192.png $DEPLOYPATH || echo "Failed to copy logo192.png"

@@ -4,7 +4,7 @@ node_modules/
 .pnp.js
 
 # Production build
-/build
+# /build  # Commented out - we need build files for cPanel deployment
 /dist
 
 # Environment variables
