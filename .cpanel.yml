@@ -5,6 +5,10 @@ deployment:
     - export DEPLOYPATH=/home1/nvjadcaq/public_html/
     - find $DEPLOYPATH -type f ! -name '.htaccess' ! -name '.well-known' -delete 2>/dev/null || true
     - find $DEPLOYPATH -mindepth 1 -type d ! -name '.well-known' -exec rm -rf {} + 2>/dev/null || true
+    # Install dependencies and build React app on server
+    - export PATH=/opt/cpanel/ea-nodejs20/bin:$PATH
+    - npm ci --production=false
+    - npm run build
     # Deploy React build files (production ready)
     - /bin/cp build/index.html $DEPLOYPATH
     - /bin/cp -R build/static $DEPLOYPATH
