@@ -40,7 +40,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
-        <div className="bg-white rounded-2xl p-8 border border-gray-200 group-hover:border-[var(--primary-purple)] transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 group-hover:border-[var(--primary-purple)] transition-all duration-300 hover:shadow-xl h-full flex flex-col">
           <div className="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <Icon className="w-8 h-8 text-white" />
           </div>

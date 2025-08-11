@@ -48,9 +48,9 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Particle System */}
         <div className="absolute inset-0">
           <ParticleSystem 
@@ -94,7 +94,7 @@ export default function About() {
                 To deliver flawless execution and results that matter — in marketing, design, and web.
               </p>
               
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-100">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-purple-100 shadow-lg">
                 <h3 className="text-2xl font-bold mb-4 gradient-text">Why We Exist</h3>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   In a world full of noise, half-done projects, and templated solutions — we created Trev to fill the gap. Not just another marketing and design agency, but a precision-first partner that delivers work that actually performs.
@@ -138,7 +138,7 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -213,7 +213,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

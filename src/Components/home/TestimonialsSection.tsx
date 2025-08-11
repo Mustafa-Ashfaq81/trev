@@ -23,7 +23,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-[var(--primary-purple)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full relative">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 hover:border-[var(--primary-purple)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full relative">
                 <Quote className="w-8 h-8 text-[var(--light-purple)] mb-4" />
                 
                 <div className="flex mb-4">

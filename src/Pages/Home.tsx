@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="relative overflow-hidden">
       <HeroSection />
       <ServicesSection />
       <WhyTrevSection />

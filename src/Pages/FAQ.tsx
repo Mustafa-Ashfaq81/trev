@@ -52,9 +52,9 @@ export default function FAQ() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Particle System */}
         <div className="absolute inset-0">
           <ParticleSystem 
@@ -135,7 +135,7 @@ export default function FAQ() {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

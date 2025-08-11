@@ -123,9 +123,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Particle System */}
         <div className="absolute inset-0">
           <ParticleSystem 
@@ -162,7 +162,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100"
+              className="text-center p-8 bg-white/70 backdrop-blur-sm rounded-2xl border border-purple-100 shadow-lg"
             >
               <Mail className="w-12 h-12 gradient-text mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Email Us</h3>
@@ -180,7 +180,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100"
+              className="text-center p-8 bg-white/70 backdrop-blur-sm rounded-2xl border border-purple-100 shadow-lg"
             >
               <MessageCircle className="w-12 h-12 gradient-text mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Social Media</h3>
@@ -212,7 +212,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100"
+              className="text-center p-8 bg-white/70 backdrop-blur-sm rounded-2xl border border-purple-100 shadow-lg"
             >
               <Calendar className="w-12 h-12 gradient-text mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Book a Call</h3>
@@ -371,7 +371,7 @@ export default function Contact() {
                 <p className="text-gray-600">We respond to all inquiries within 24hrs</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-100">
+                              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-purple-100 shadow-lg">
                 <h3 className="text-xl font-bold mb-4">🔍 Book a Discovery Call</h3>
                 <p className="text-gray-600 mb-6">
                   Let's talk goals, ideas, and the smartest path forward — no pressure, just clarity.

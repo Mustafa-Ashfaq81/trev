@@ -33,7 +33,7 @@ const itemVariants = {
 export default function HeroSection() {
   const navigate = useNavigate();
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Particle System */}

@@ -57,9 +57,9 @@ export default function Services() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gray-50 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Particle System */}
         <div className="absolute inset-0">
           <ParticleSystem 
@@ -88,7 +88,7 @@ export default function Services() {
       </section>
 
       {/* Services Detail */}
-      <section className="py-24 bg-white">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="space-y-24">
             {services.map((service, index) => (
@@ -136,7 +136,7 @@ export default function Services() {
                     <div className="bg-gray-50 rounded-3xl overflow-hidden h-96 border border-gray-200">
                       {/* High-Quality DotLottie Animations for all services */}
                       <motion.div
-                        className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50"
+                        className="w-full h-full flex items-center justify-center bg-white/50 backdrop-blur-sm"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -184,7 +184,7 @@ export default function Services() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

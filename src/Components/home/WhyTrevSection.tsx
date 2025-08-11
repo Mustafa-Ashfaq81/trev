@@ -28,7 +28,7 @@ const features = [
 
 export default function WhyTrevSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div

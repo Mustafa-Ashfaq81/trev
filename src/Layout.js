@@ -9,11 +9,17 @@ import {
   SheetContent,
   SheetTrigger,
 } from "./Components/ui/sheet";
+import BackgroundPerformanceWrapper from "./Components/ui/BackgroundPerformanceWrapper";
+import { getPageBackgroundVariant, getThemeCustomProperties } from "./utils/backgroundUtils";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = React.useState(false);
+  
+  // Get background variant based on current page
+  const backgroundVariant = getPageBackgroundVariant(location.pathname);
+  const themeProperties = getThemeCustomProperties(backgroundVariant);
 
   // Scroll to top whenever the route changes
   React.useEffect(() => {
@@ -53,7 +59,10 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 pt-16 sm:pt-20">
+    <div className="min-h-screen relative text-gray-800 pt-16 sm:pt-20">
+      {/* Animated Background System */}
+      <BackgroundPerformanceWrapper variant={backgroundVariant} />
+      
       <style>{`
         :root {
           --primary-purple: #803eef;
@@ -64,6 +73,7 @@ export default function Layout({ children, currentPageName }) {
           --text-dark: #111827;
           --text-light: #f9fafb;
           --background-dark: #111827;
+          ${Object.entries(themeProperties).map(([key, value]) => `${key}: ${value};`).join('\n          ')}
         }
 
         html {

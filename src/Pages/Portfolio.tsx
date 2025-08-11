@@ -85,9 +85,9 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gray-50 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Particle System */}
         <div className="absolute inset-0">
           <ParticleSystem 
@@ -117,7 +117,7 @@ export default function Portfolio() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-24 bg-white">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -222,7 +222,7 @@ export default function Portfolio() {
       </section>
 
       {/* How We Work */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -263,7 +263,7 @@ export default function Portfolio() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-white">
+      <section className="py-24">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -296,7 +296,7 @@ export default function Portfolio() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
