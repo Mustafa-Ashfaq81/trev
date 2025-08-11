@@ -31,8 +31,8 @@ export default function CTASection() {
             <Button 
               size="lg" 
               className="gradient-bg transition-all duration-300 text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-              aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+              onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+              aria-label="Start your project with Trev Solutions - Book a free consultation"
             >
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -41,6 +41,8 @@ export default function CTASection() {
               variant="outline" 
               size="lg"
               className="text-lg px-8 py-4 rounded-xl border-2 border-gray-300 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)] transition-all duration-300"
+              onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+              aria-label="Book a free discovery call with Trev Solutions"
             >
               Book a Discovery Call
             </Button>

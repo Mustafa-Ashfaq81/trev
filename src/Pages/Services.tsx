@@ -198,7 +198,12 @@ export default function Services() {
             <p className="text-xl text-gray-600 mb-8">
               At Trev, we don't settle for good enough. We deliver smart, scalable solutions with pinpoint accuracy—because your brand deserves nothing less than excellence.
             </p>
-            <Button size="lg" className="gradient-bg transition-opacity text-lg px-8 py-4">
+            <Button 
+              size="lg" 
+              className="gradient-bg transition-opacity text-lg px-8 py-4"
+              onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+              aria-label="Get your custom strategy - Book a free consultation with Trev Solutions"
+            >
               Get Your Custom Strategy
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

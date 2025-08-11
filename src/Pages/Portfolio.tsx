@@ -182,8 +182,13 @@ export default function Portfolio() {
 
                   <p className="text-gray-600 mb-8 leading-relaxed">{project.description}</p>
 
-                  <Button variant="outline" className="border-[var(--primary-purple)] text-[var(--primary-purple)] hover:bg-[var(--light-purple)]">
-                    View Case Study
+                  <Button 
+                    variant="outline" 
+                    className="border-[var(--primary-purple)] text-[var(--primary-purple)] hover:bg-[var(--light-purple)]"
+                    onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                    aria-label="Discuss your project requirements - Book a consultation to create your case study"
+                  >
+                    Discuss Your Project
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
