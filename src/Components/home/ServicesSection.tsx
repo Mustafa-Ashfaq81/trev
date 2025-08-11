@@ -1,8 +1,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, TrendingUp, ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { Code, Palette, TrendingUp } from "lucide-react";
+import FlipCard from "../ui/FlipCard";
 
 const services = [
   {
@@ -43,7 +43,7 @@ const cardVariants = {
 
 export default function ServicesSection() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section id="services-section" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ export default function ServicesSection() {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-8 relative z-10"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.2 }}
@@ -72,30 +72,14 @@ export default function ServicesSection() {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="group"
+              className="group h-96 min-h-[24rem]"
             >
-              <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-[var(--primary-purple)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full">
-                <div className="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
-                
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-600">
-                      <div className="w-2 h-2 gradient-bg rounded-full mr-3"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button variant="ghost" className="text-[var(--primary-purple)] hover:text-[var(--dark-purple)] p-0">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
+              <FlipCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                features={service.features}
+              />
             </motion.div>
           ))}
         </motion.div>

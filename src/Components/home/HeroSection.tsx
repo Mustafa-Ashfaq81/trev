@@ -1,8 +1,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import NumberCounter from "../ui/NumberCounter";
+import RippleButton from "../ui/RippleButton";
+import AnimatedBlob from "../ui/AnimatedBlob";
+import ParticleSystem from "../ui/ParticleSystem";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,20 +31,44 @@ const itemVariants = {
 };
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[var(--light-purple)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-[var(--light-yellow)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-1000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[var(--light-purple)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-2000"></div>
+        {/* Particle System */}
+        <ParticleSystem 
+          particleCount={35}
+          colors={['#803eefC0', '#f7d047B0', '#6a2fcc90', '#f3e8ffF0']}
+          minSize={8}
+          maxSize={18}
+          speed={0.6}
+          className="z-0"
+        />
+        
+        {/* Animated Blobs */}
+        <AnimatedBlob 
+          color="purple" 
+          position={{ top: "5rem", left: "2.5rem" }} 
+          delay={0}
+        />
+        <AnimatedBlob 
+          color="yellow" 
+          position={{ top: "10rem", right: "2.5rem" }} 
+          delay={2}
+        />
+        <AnimatedBlob 
+          color="purple" 
+          position={{ bottom: "-2rem", left: "5rem" }} 
+          delay={4}
+        />
       </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative max-w-7xl mx-auto px-6 text-center"
+        className="relative max-w-7xl mx-auto px-6 text-center z-10"
       >
         <motion.div variants={itemVariants} className="mb-6">
           <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 border border-[var(--light-purple)] mb-8">
@@ -69,22 +97,23 @@ export default function HeroSection() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button 
+          <RippleButton 
             size="lg" 
-            className="gradient-bg transition-all duration-300 text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-            aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+            variant="primary"
+            onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+            ariaLabel="Start your project with Trev Solutions - Book a free consultation"
           >
             Start Your Project Today
             <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-          <Button 
+          </RippleButton>
+          <RippleButton 
             variant="outline" 
             size="lg"
-            className="text-lg px-8 py-4 rounded-xl border-2 border-gray-300 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)] transition-all duration-300"
+            onClick={() => navigate('/portfolio')}
+            ariaLabel="View our portfolio and previous work"
           >
             View Our Work
-          </Button>
+          </RippleButton>
         </motion.div>
 
         <motion.div
@@ -92,15 +121,36 @@ export default function HeroSection() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
           <div className="text-center">
-            <div className="text-3xl font-bold gradient-text mb-2">200%</div>
+            <div className="text-3xl font-bold gradient-text mb-2">
+              <NumberCounter 
+                value={200} 
+                suffix="%" 
+                duration={2.5}
+                className="text-3xl font-bold gradient-text"
+              />
+            </div>
             <div className="text-gray-600">Average Growth Increase</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold gradient-text mb-2">48hrs</div>
+            <div className="text-3xl font-bold gradient-text mb-2">
+              <NumberCounter 
+                value={24} 
+                suffix="hrs" 
+                duration={2}
+                className="text-3xl font-bold gradient-text"
+              />
+            </div>
             <div className="text-gray-600">Average Response Time</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold gradient-text mb-2">100%</div>
+            <div className="text-3xl font-bold gradient-text mb-2">
+              <NumberCounter 
+                value={100} 
+                suffix="%" 
+                duration={3}
+                className="text-3xl font-bold gradient-text"
+              />
+            </div>
             <div className="text-gray-600">Client Satisfaction Rate</div>
           </div>
         </motion.div>

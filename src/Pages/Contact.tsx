@@ -5,6 +5,7 @@ import { Input } from "../Components/ui/input";
 import { Textarea } from "../Components/ui/textarea";
 import { Mail, MessageCircle, Calendar, Send, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { setPageMeta } from "../utils/seo";
+import ParticleSystem from "../Components/ui/ParticleSystem";
 
 interface FormData {
   name: string;
@@ -124,8 +125,19 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+        {/* Particle System */}
+        <div className="absolute inset-0">
+          <ParticleSystem 
+            particleCount={22}
+            colors={['#803eef90', '#f7d04790', '#6a2fcc70', '#f3e8ffD0']}
+            minSize={6}
+            maxSize={15}
+            speed={0.4}
+            className="z-0"
+          />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -205,7 +217,11 @@ export default function Contact() {
               <Calendar className="w-12 h-12 gradient-text mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Book a Call</h3>
               <p className="text-gray-600 mb-4">Let's talk goals and strategy — no pressure</p>
-              <Button className="gradient-bg hover:opacity-90 transition-opacity">
+              <Button 
+                className="gradient-bg hover:opacity-90 transition-opacity"
+                onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                aria-label="Book a free 30-minute discovery call with Trev Solutions"
+              >
                 📅 Book Your Free Call
               </Button>
             </motion.div>
@@ -352,7 +368,7 @@ export default function Contact() {
                   <Clock className="w-5 h-5 mr-2 text-purple-600" />
                   Response Time
                 </h3>
-                <p className="text-gray-600">We respond to all inquiries within 24 hours</p>
+                <p className="text-gray-600">We respond to all inquiries within 24hrs</p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-100">
@@ -360,7 +376,11 @@ export default function Contact() {
                 <p className="text-gray-600 mb-6">
                   Let's talk goals, ideas, and the smartest path forward — no pressure, just clarity.
                 </p>
-                <Button className="gradient-bg hover:opacity-90 transition-opacity w-full">
+                <Button 
+                  className="gradient-bg hover:opacity-90 transition-opacity w-full"
+                  onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                  aria-label="Book a free 30-minute discovery call with Trev Solutions"
+                >
                   📅 Book Your Free Call
                 </Button>
               </div>

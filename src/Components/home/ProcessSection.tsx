@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Search, FileText, Rocket } from "lucide-react";
+import AnimatedProgressLine from "../ui/AnimatedProgressLine";
 
 const steps = [
   {
@@ -46,9 +47,11 @@ export default function ProcessSection() {
         </motion.div>
 
         <div className="relative grid md:grid-cols-4 gap-8">
-          <div className="absolute top-10 left-0 w-full h-0.5 bg-gray-200 hidden md:block">
-             <div className="bg-[var(--primary-purple)] h-full w-0"></div>
-          </div>
+          <AnimatedProgressLine 
+            steps={4} 
+            duration={2.5}
+            delay={0.8}
+          />
           {steps.map((step, index) => (
             <motion.div
               key={index}

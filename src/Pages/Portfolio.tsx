@@ -5,6 +5,7 @@ import { ExternalLink, ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "../Components/ui/button";
 import { Badge } from "../Components/ui/badge";
 import { setPageMeta } from "../utils/seo";
+import ParticleSystem from "../Components/ui/ParticleSystem";
 
 // Project image assets - now using your local images
 const projectImages = {
@@ -86,8 +87,19 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="relative pt-24 pb-16 bg-gray-50 overflow-hidden">
+        {/* Particle System */}
+        <div className="absolute inset-0">
+          <ParticleSystem 
+            particleCount={25}
+            colors={['#803eef80', '#f7d04780', '#6a2fcc60', '#f3e8ffC0']}
+            minSize={5}
+            maxSize={15}
+            speed={0.4}
+            className="z-0"
+          />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -296,8 +308,8 @@ export default function Portfolio() {
             <Button 
               size="lg" 
               className="gradient-bg transition-opacity text-lg px-8 py-4"
-              onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-              aria-label="Start your project with Trev Solutions - Contact us on LinkedIn"
+              onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+              aria-label="Start your project with Trev Solutions - Book a free consultation"
             >
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />

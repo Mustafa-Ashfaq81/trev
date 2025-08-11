@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createPageUrl } from "./utils";
 import { Menu, ArrowRight } from "lucide-react";
 import { Button } from "./Components/ui/button";
@@ -12,7 +12,36 @@ import {
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = React.useState(false);
+
+  // Scroll to top whenever the route changes
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, [location.pathname]);
+
+  // Function to navigate to specific service on Services page
+  const navigateToService = (serviceIndex) => {
+    navigate('/services');
+    // Wait for navigation to complete, then scroll to specific service
+    setTimeout(() => {
+      const serviceElement = document.getElementById(`service-${serviceIndex}`);
+      if (serviceElement) {
+        const headerOffset = 100; // Account for fixed header
+        const elementPosition = serviceElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 300);
+  };
 
   const navigationItems = [
     { name: "Home", path: createPageUrl("Home") },
@@ -116,8 +145,8 @@ export default function Layout({ children, currentPageName }) {
                     ))}
                     <Button
                       className="gradient-bg transition-opacity w-full"
-                      onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-                      aria-label="Start your project with Trev Solutions"
+                      onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                      aria-label="Start your project with Trev Solutions - Book a free consultation"
                     >
                       Start Your Project
                       <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
@@ -145,8 +174,8 @@ export default function Layout({ children, currentPageName }) {
               ))}
               <Button
                 className="gradient-bg transition-opacity"
-                onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-                aria-label="Start your project with Trev Solutions"
+                onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                aria-label="Start your project with Trev Solutions - Book a free consultation"
               >
                 Start Your Project
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
@@ -188,9 +217,30 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h4 className="font-semibold text-white mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400">
-                              <li><Link to="/services" className="hover:text-white transition-colors">Web Development</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Branding & Design</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Marketing</Link></li>
+                <li>
+                  <button 
+                    onClick={() => navigateToService(0)}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    Web Development
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigateToService(1)}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    Branding & Design
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigateToService(2)}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    End-to-End Marketing
+                  </button>
+                </li>
               </ul>
             </div>
             

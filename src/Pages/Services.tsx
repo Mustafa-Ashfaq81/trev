@@ -5,6 +5,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "../Components/ui/button";
 import { setPageMeta } from "../utils/seo";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import ParticleSystem from "../Components/ui/ParticleSystem";
 
 
 
@@ -58,8 +59,19 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="relative pt-24 pb-16 bg-gray-50 overflow-hidden">
+        {/* Particle System */}
+        <div className="absolute inset-0">
+          <ParticleSystem 
+            particleCount={25}
+            colors={['#803eef90', '#f7d04790', '#6a2fcc70', '#f3e8ffC0']}
+            minSize={6}
+            maxSize={16}
+            speed={0.4}
+            className="z-0"
+          />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,6 +94,7 @@ export default function Services() {
             {services.map((service, index) => (
               <motion.div
                 key={index}
+                id={`service-${index}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -110,8 +123,8 @@ export default function Services() {
                   
                   <Button 
                     className="gradient-bg transition-opacity"
-                    onClick={() => window.open('https://www.linkedin.com/company/trev-solution/', '_blank')}
-                    aria-label="Get started with Trev Solutions - Contact us on LinkedIn"
+                    onClick={() => window.open('https://calendly.com/trevsol-info/30min', '_blank')}
+                    aria-label="Get started with Trev Solutions - Book a free consultation"
                   >
                     Get Started
                     <ArrowRight className="w-4 h-4 ml-2" />

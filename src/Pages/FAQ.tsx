@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle, ArrowRight } from "lucide-react";
 import { Button } from "../Components/ui/button";
 import { setPageMeta } from "../utils/seo";
+import ParticleSystem from "../Components/ui/ParticleSystem";
 
 const faqs = [
   {
@@ -53,8 +54,19 @@ export default function FAQ() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+        {/* Particle System */}
+        <div className="absolute inset-0">
+          <ParticleSystem 
+            particleCount={20}
+            colors={['#803eef70', '#f7d04770', '#6a2fcc50', '#f3e8ffB0']}
+            minSize={4}
+            maxSize={12}
+            speed={0.3}
+            className="z-0"
+          />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
